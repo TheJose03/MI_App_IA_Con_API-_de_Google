@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Generador de contenido bilingüe en inglés y español con palabras específicas para aprendizaje de idiomas">
+  <meta name="keywords" content="bilingüe, inglés, español, aprendizaje, idiomas, generador, contenido, IA">
+  <meta name="author" content="Generador Bilingüe">
+  <meta name="theme-color" content="#2563eb">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourdomain.com/">
+  <meta property="og:title" content="Generador de Contenido Bilingüe">
+  <meta property="og:description" content="Crea historias, oraciones y preguntas bilingües en inglés y español con palabras específicas">
+  <meta property="og:image" content="https://yourdomain.com/og-image.jpg">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://yourdomain.com/">
+  <meta property="twitter:title" content="Generador de Contenido Bilingüe">
+  <meta property="twitter:description" content="Crea historias, oraciones y preguntas bilingües en inglés y español con palabras específicas">
+  <meta property="twitter:image" content="https://yourdomain.com/twitter-image.jpg">
+  <link rel="icon" href="https://logodix.com/logo/240951.png" type="image/x-icon">
+  
+  <title>Generador de Contenido Bilingüe</title>
+   <div style="text-align: center;">
+      <img src="https://ideogram.ai/assets/image/lossless/response/TTZvDFAAQIibMfWdE7z7Bg" 
+      alt="Avatar" 
+      style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+      </div>
+  <!-- Favicon -->
+  
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link type="text/css" rel="stylesheet" href="style.css"/>
+  <!-- Preload critical assets -->
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+  
+  <!-- Manifest for PWA -->
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- Font Awesome para iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="theme-toggle">
+        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Cambiar tema">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+      <h1>Generador de Contenido Bilingüe con IA</h1>
+      <p class="app-description">Crea historias, oraciones y preguntas bilingües en inglés y español con palabras específicas</p>
+    </header>
+
+    <main class="app-content">
+      <!-- Sección de categorías -->
+      <section class="categories-section" aria-labelledby="categories-heading">
+        <h2 id="categories-heading">Categorías <span class="required-indicator">(Debes seleccionar una)</span></h2>
+        <div class="categories-container" id="categories-container" role="group" aria-label="Categorías disponibles">
+          <!-- Las categorías se generarán dinámicamente con JavaScript -->
+        </div>
+
+        <!-- Agregar nueva categoría -->
+        <div class="add-category">
+          <div class="input-group">
+            <label for="newCategory" class="sr-only">Nueva categoría</label>
+            <input type="text" id="newCategory" placeholder="Escribe una nueva categoría" aria-label="Nueva categoría">
+            <button type="button" id="addCategoryBtn" class="btn btn-primary">
+              <i class="fas fa-plus"></i> Agregar
+            </button>
+          </div>
+        </div>
+
+        <!-- Descripción de categoría -->
+        <div class="category-description-container" id="categoryDescriptionContainer" style="display: none;">
+          <div class="category-description-header">
+            <h3 id="categoryDescriptionTitle">Descripción personalizada</h3>
+            <div class="description-actions">
+              <button type="button" id="saveDescriptionBtn" class="btn btn-sm btn-secondary">
+                <i class="fas fa-save"></i> Guardar
+              </button>
+            </div>
+          </div>
+          <div class="category-description-content">
+            <textarea id="categoryDescription" rows="5" style="width: 100%; height: 50px;" aria-label="Descripción de categoría"></textarea>
+            <div class="description-help">
+              <i class="fas fa-info-circle"></i> 
+              <span>Esta descripción se utilizará para generar el contexto del contenido.</span>
+            </div>
+            <div class="selected-category-info" id="selectedCategoryInfo" style="margin-top: 10px; font-size: 0.9rem;">
+              <span class="badge">Categoría seleccionada: <strong id="selectedCategoryName">Ninguna</strong></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección de configuración de historia -->
+      <section class="story-config-section" aria-labelledby="config-heading">
+        <h2 id="config-heading">Configuración del Contenido</h2>
+        
+        <!-- Palabras en inglés -->
+        <div class="input-group">
+          <label for="words">Palabras en Inglés</label>
+          <input type="text" id="words" placeholder="Escribe palabras en inglés separadas por comas (ej: friend, home, work)" aria-label="Palabras en inglés">
+        </div>
+        
+        <!-- Cantidad de párrafos -->
+        <div class="input-group">
+          <label for="paragraphs">Cantidad de párrafos/oraciones/preguntas: <span id="paragraphs-count">1</span></label>
+          <input type="range" id="paragraphs" class="slider" min="1" max="10" value="1" aria-label="Cantidad de párrafos/oraciones/preguntas">
+        </div>
+        
+        <!-- Palabras por párrafo -->
+        <div class="input-group">
+          <label for="wordCount">Palabras por párrafo/oración/pregunta: <span id="wordCount-value">50</span></label>
+          <input type="range" id="wordCount" class="slider" min="50" max="500" step="10" value="50" aria-label="Palabras por párrafo/oración/pregunta">
+        </div>
+        
+        <!-- Botones de generación -->
+        <div class="generation-buttons">
+          <button type="button" id="generateSentencesBtn" class="btn btn-generate btn-primary" aria-label="Generar Oraciones">
+            <span class="btn-text"><i class="fas fa-comment-alt"></i> Generar Oraciones</span>
+            <span class="btn-loading" style="display: none;">
+              <i class="fas fa-spinner fa-spin"></i> Generando...
+            </span>
+          </button>
+          
+          <button type="button" id="generateStoryBtn" class="btn btn-generate btn-secondary" aria-label="Generar Historia">
+            <span class="btn-text"><i class="fas fa-book"></i> Generar Historia</span>
+            <span class="btn-loading" style="display: none;">
+              <i class="fas fa-spinner fa-spin"></i> Generando...
+            </span>
+          </button>
+          
+          <button type="button" id="generateQABtn" class="btn btn-generate btn-accent" aria-label="Generar Preguntas y Respuestas">
+            <span class="btn-text"><i class="fas fa-question-circle"></i> Generar Preguntas y Respuestas</span>
+            <span class="btn-loading" style="display: none;">
+              <i class="fas fa-spinner fa-spin"></i> Generando...
+            </span>
+          </button>
+        </div>
+
+      </section>
+
+      <!-- Mensajes de error -->
+      <div class="error-message" id="error" style="display: none;" role="alert" aria-live="assertive"></div>
+
+      <!-- Contenido generado -->
+      <section class="story-result" id="contentContainer" style="display: none;" aria-labelledby="contentTitle">
+        <div class="story-header">
+          <h2 id="contentTitle">Contenido Generado</h2>
+          <div class="story-actions">
+            <button type="button" id="saveContentBtn" class="btn btn-primary">
+              <i class="fas fa-bookmark"></i> Guardar
+            </button>
+            <button type="button" id="copyBtn" class="btn btn-secondary">
+              <i class="fas fa-copy"></i> Copiar
+            </button>
+          </div>
+        </div>
+        <div class="story-content" id="content"></div>
+      </section>
+
+      <!-- Contenido guardado -->
+      <section class="saved-stories-section" id="savedContentsSection" style="display: none;" aria-labelledby="saved-heading">
+        <h2 id="saved-heading">Contenido Guardado</h2>
+        <div class="saved-stories-container" id="savedContentsContainer">
+          <!-- El contenido guardado se generará dinámicamente con JavaScript -->
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>&copy; <span id="year"></span> Generador de Contenido Bilingüe</p>
+      <p>Desarrollado con <i class="fas fa-heart"></i> para aprendizaje de idiomas</p>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js" defer></script>
+</body>
+</html>
+
+
+   
